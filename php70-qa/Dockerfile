@@ -1,5 +1,7 @@
 FROM ubuntu:16.04
 
+COPY php-qa-tools-install.sh /php-qa-tools-install.sh
+
 RUN set -xe \
 	&& echo 'deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main' > /etc/apt/sources.list.d/ondrej.list \
 	&& LC_ALL=C.UTF-8 apt-key adv --recv-key --keyserver keyserver.ubuntu.com E5267A6C \

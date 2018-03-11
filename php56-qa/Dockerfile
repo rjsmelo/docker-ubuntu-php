@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-COPY ../php-qa-tools-install.sh /php-qa-tools-install.sh
+COPY php-qa-tools-install.sh /php-qa-tools-install.sh
 
 RUN set -xe \
 	&& echo 'deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main' > /etc/apt/sources.list.d/ondrej.list \
