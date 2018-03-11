@@ -3,7 +3,8 @@ FROM ubuntu:12.04
 RUN set -xe \
 	&& DEBIAN_FRONTEND=noninteractive apt-get update \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -y \
-		php5-fpm php5-cli php5-mysql php5-curl php5-gd php5-mcrypt \
+		php5-cli php5-mysql php5-curl php5-gd php5-mcrypt php5-intl \
+		php5-fpm \
 	&& ( \
 		echo '; Local configuration for PHP' \
 		echo '; priority=99' \
@@ -36,5 +37,5 @@ VOLUME /var/www
 
 EXPOSE 9000
 
-CMD ["php-fpm5.6"]
+CMD ["php5-fpm"]
 

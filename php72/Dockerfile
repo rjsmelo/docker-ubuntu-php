@@ -5,7 +5,8 @@ RUN set -xe \
 	&& LC_ALL=C.UTF-8 apt-key adv --recv-key --keyserver keyserver.ubuntu.com E5267A6C \
 	&& DEBIAN_FRONTEND=noninteractive apt-get update \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -y \
-		php7.2-fpm php7.2-cli php7.2-mysql php7.2-xml php7.2-zip php7.2-curl php7.2-gd php7.2-mbstring \
+		php7.2-cli php7.2-mysql php7.2-xml php7.2-zip php7.2-curl php7.2-gd php7.2-mbstring php7.2-intl \
+		php7.2-fpm \
 	&& ( \
 		echo '; Local configuration for PHP' \
 		echo '; priority=99' \
