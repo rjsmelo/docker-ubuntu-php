@@ -3,7 +3,7 @@ FROM ubuntu:12.04
 RUN set -xe \
 	&& DEBIAN_FRONTEND=noninteractive apt-get update \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -y \
-		php5-cli php5-mysql php5-curl php5-gd php5-mcrypt php5-intl \
+		php5-cli php5-mysql php5-curl php5-gd php5-mcrypt php5-intl php5-ldap \
 		php5-fpm \
 	&& ( \
 		echo '; Local configuration for PHP' \

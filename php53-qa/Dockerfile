@@ -5,7 +5,7 @@ COPY php-qa-tools-install.sh /php-qa-tools-install.sh
 RUN set -xe \
 	&& DEBIAN_FRONTEND=noninteractive apt-get update \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -y \
-		php5-cli php5-mysql php5-curl php5-gd php5-mcrypt php5-intl \		
+		php5-cli php5-mysql php5-curl php5-gd php5-mcrypt php5-intl php5-ldap \
 		php5-xdebug git patch curl wget mysql-client \
 	&& ( \
 		echo '; Local configuration for PHP' \
