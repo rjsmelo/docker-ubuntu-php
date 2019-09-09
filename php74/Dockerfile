@@ -42,5 +42,5 @@ VOLUME /var/www
 
 EXPOSE 9000
 
-CMD ["php-fpm${PHP_VERSION}"]
+CMD ["sh", "-c", "php-fpm${PHP_VERSION}"]
 
