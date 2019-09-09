@@ -1,19 +1,21 @@
 FROM ubuntu:16.04
 
+ENV PHP_VERSION=7.1
+
 RUN set -xe \
 	&& echo 'deb http://ppa.launchpad.net/ondrej/php/ubuntu xenial main' > /etc/apt/sources.list.d/ondrej.list \
 	&& LC_ALL=C.UTF-8 apt-key adv --recv-key --keyserver keyserver.ubuntu.com E5267A6C \
 	&& DEBIAN_FRONTEND=noninteractive apt-get update \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -y \
-		php7.1-cli php7.1-mysql php7.1-xml php7.1-zip php7.1-bz2 php7.1-curl php7.1-gd php7.1-mbstring php7.1-intl php7.1-mcrypt php7.1-ldap \
-		php7.1-fpm \
+		php${PHP_VERSION}-cli php${PHP_VERSION}-mysql php${PHP_VERSION}-xml php${PHP_VERSION}-zip php${PHP_VERSION}-bz2 php${PHP_VERSION}-curl php${PHP_VERSION}-gd php${PHP_VERSION}-mbstring php${PHP_VERSION}-intl php${PHP_VERSION}-ldap \
+		php${PHP_VERSION}-fpm \
 	&& ( \
 		echo '; Local configuration for PHP' \
 		echo '; priority=99' \
 		echo 'date.timezone = "UTC"' \
-	) | tee /etc/php/7.1/mods-available/local.ini \
+	) | tee /etc/php/${PHP_VERSION}/mods-available/local.ini \
 	&& phpenmod local \
-	&& ls -la /etc/php/7.1/fpm/pool.d \
+	&& ls -la /etc/php/${PHP_VERSION}/fpm/pool.d \
 	&& ( \
 		echo '[global]'; \
 		echo 'error_log = /proc/self/fd/2'; \
@@ -26,19 +28,19 @@ RUN set -xe \
 		echo; \
 		echo '; Ensure worker stdout and stderr are sent to the main error log.'; \
 		echo 'catch_workers_output = yes'; \
-	) | tee /etc/php/7.1/fpm/pool.d/docker.conf \
+	) | tee /etc/php/${PHP_VERSION}/fpm/pool.d/docker.conf \
 	&& ( \
 		echo '[global]'; \
 		echo 'daemonize = no'; \
 		echo; \
 		echo '[www]'; \
 		echo 'listen = [::]:9000'; \
-	) | tee /etc/php/7.1/fpm/pool.d/zz-docker.conf \
+	) | tee /etc/php/${PHP_VERSION}/fpm/pool.d/zz-docker.conf \
 	&& mkdir /run/php
 
 VOLUME /var/www
 
 EXPOSE 9000
 
-CMD ["php-fpm7.1"]
+CMD ["sh", "-c", "php-fpm${PHP_VERSION}"]
 

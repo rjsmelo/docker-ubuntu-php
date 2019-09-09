@@ -20,5 +20,5 @@ RUN set -xe \
 	&& bash -x /php-qa-tools-install.sh \
 	&& rm /php-qa-tools-install.sh
 
-CMD ["php -a"]
+CMD ["php", "-a"]
 
