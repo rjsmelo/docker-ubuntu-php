@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-ENV PHP_VERSION=7.1
+ENV PHP_VERSION=8.0
 
 COPY php-qa-tools-install.sh /php-qa-tools-install.sh
 
@@ -10,7 +10,6 @@ RUN set -xe \
 	&& DEBIAN_FRONTEND=noninteractive apt-get update \
 	&& DEBIAN_FRONTEND=noninteractive apt-get install -y \
 		php${PHP_VERSION}-cli php${PHP_VERSION}-mysql php${PHP_VERSION}-xml php${PHP_VERSION}-zip php${PHP_VERSION}-bz2 php${PHP_VERSION}-curl php${PHP_VERSION}-gd php${PHP_VERSION}-mbstring php${PHP_VERSION}-intl php${PHP_VERSION}-ldap php${PHP_VERSION}-bcmath php${PHP_VERSION}-soap \
-		php${PHP_VERSION}-mcrypt \
 		php-xdebug git patch curl wget mysql-client unzip zip bzip2 \
 	&& ( \
 		echo '; Local configuration for PHP' \

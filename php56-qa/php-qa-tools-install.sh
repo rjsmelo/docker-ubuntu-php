@@ -15,7 +15,8 @@ then
     exit 1
 fi
 
-php composer-setup.php --quiet --install-dir=/usr/local/bin --filename=composer
+# use version 1.10.16 to keep it pin to version 1
+php composer-setup.php --quiet --install-dir=/usr/local/bin --filename=composer --version=1.10.16
 RESULT=$?
 rm composer-setup.php
 exit $RESULT
